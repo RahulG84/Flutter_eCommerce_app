@@ -57,6 +57,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool secureText = true;
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundColor,
       body: SafeArea(
@@ -103,21 +104,41 @@ class _AuthScreenState extends State<AuthScreen> {
                           children: [
                             CustomTextField(
                               hintText: 'Name',
+                              prefixIcon:
+                              const Icon(Icons.person, color: Colors.black),
                               controller: _nameController,
+                              secureText: false,
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             CustomTextField(
                               hintText: 'Email',
+                              prefixIcon:
+                              const Icon(Icons.email, color: Colors.black),
                               controller: _emailController,
+                              secureText: false,
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             CustomTextField(
                               hintText: 'Password',
+                              prefixIcon:
+                              const Icon(Icons.key, color: Colors.black),
                               controller: _passwordController,
+                              secureText: true,
+                              suffixIcon: IconButton(
+                                  icon:  const Icon(
+                                      Icons.visibility
+                                    //secureText ? Icons.visibility : Icons.visibility_off,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      secureText = !secureText;
+                                    });
+                                  }
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
@@ -161,6 +182,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         children: [
                           CustomTextField(
                             hintText: 'Email',
+                            secureText: false,
+                            prefixIcon:
+                                const Icon(Icons.email, color: Colors.black),
                             controller: _emailController,
                           ),
                           const SizedBox(
@@ -168,6 +192,20 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                           CustomTextField(
                             hintText: 'Password',
+                            secureText: secureText,
+                            suffixIcon: IconButton(
+                              icon:  const Icon(
+                                Icons.visibility
+                                //secureText ? Icons.visibility : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  secureText = !secureText;
+                                });
+                              }
+                            ),
+                            prefixIcon:
+                                const Icon(Icons.key, color: Colors.black),
                             controller: _passwordController,
                           ),
                           const SizedBox(
