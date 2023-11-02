@@ -20,14 +20,29 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: Center(
-        child: Text(
-          user.name,
-          style: const TextStyle(
-            fontSize: 20,
-            color: GlobalVariables.blackColor,
-            fontWeight: FontWeight.bold,
-          ),
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              user.name,
+              style: const TextStyle(
+                fontSize: 20,
+                color: GlobalVariables.blackColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              user.email,
+              style: const TextStyle(
+                fontSize: 20,
+                color: GlobalVariables.blackColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

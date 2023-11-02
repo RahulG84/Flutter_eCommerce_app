@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../model/user_model");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 const authRouter = express.Router();
 
@@ -57,7 +58,7 @@ authRouter.post("/api-signIn", async (req, res) => {
     const token = jwt.sign({ id: user._id }, "passwordKey");
     //
     res.json({ token, ...user._doc });
-    console.log(user);
+    //console.log(user);
   } catch (error) {
     return res.status(500).json({ error: `Catch Error ${error.message}` });
   }
@@ -69,13 +70,26 @@ authRouter.post("/tokenIsValid", async (req, res) => {
     const token = req.header("x-auth-token");
     if (!token) return res.json(false);
     const isVerified = jwt.verify(token, "passwordKey");
-    console.log("isVerified", isVerified);
+    //console.log("isVerified", isVerified);
     if (!isVerified) return res.json(false);
     const user = await User.findById(isVerified.id);
     if (!user) return res.json(false);
     res.json(true);
   } catch (error) {
     return res.status(500).json({ error: `Catch Error ${error.message}` });
+  }
+});
+
+// get user data
+
+authRouter.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user);
+    res.json({ ...user._doc, token: req.token });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ error: `get user token error ${error.message}` });
   }
 });
 

@@ -94,7 +94,9 @@ class AuthService {
   void getUserData(
     BuildContext context,
   ) async {
+    print('Hello Rahul1');
     try {
+      print('Hello Rahul2');
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
       if (token == null) {
@@ -104,7 +106,7 @@ class AuthService {
         Uri.parse('$uri/tokenIsValid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!,
+          'x-auth-token': token!
         },
       );
 
@@ -112,9 +114,22 @@ class AuthService {
       // with respect to that will fetch the user data from the api call
       // this  tokenResp will give us the valid jwd token that is true or false
       var response = jsonDecode(tokenResp.body);
-      
+      print(response.toString());
+      print(token);
+      if (response == true) {
+        var userResp = await http.get(Uri.parse('$uri/'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'x-auth-token': token
+            });
+        print('Hello Rahul3');
+        print('userResp.body${userResp.toString()}');
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUser(userResp.body);
+      }
+      print('Hello Rahul4');
     } catch (e) {
-      print(e.toString());
+      showSnackPopup(context, e.toString());
     }
   }
 }
