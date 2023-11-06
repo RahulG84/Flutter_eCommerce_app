@@ -5,6 +5,7 @@ import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
 import 'package:amazon_clone/models/user_models.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
+import 'package:amazon_clone/widgets/bottom_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,7 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.restorablePushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },

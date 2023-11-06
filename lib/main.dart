@@ -4,6 +4,7 @@ import 'package:amazon_clone/features/auth/services/auth_services.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
 import 'package:amazon_clone/provider/user_provider.dart';
 import 'package:amazon_clone/utils/router.dart';
+import 'package:amazon_clone/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -56,31 +57,8 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => onGenerateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? const BottomBar()
           : const AuthScreen(),
     );
   }
 }
-
-// Scaffold(
-// appBar: AppBar(
-// title: const Text('Hello'),
-// ),
-// body: Center(
-// child: Column(
-// children: [
-// const Text('Hello Rahul...'),
-// Builder(
-// builder: (BuildContext context) {
-// return ElevatedButton(
-// onPressed: () {
-// Navigator.pushNamed(context, AuthScreen.routeName);
-// },
-// child: const Text('Click'),
-// );
-// },
-// ),
-// ],
-// ),
-// ),
-// ),
