@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-String uri = 'http://10.75.21.15:4000';
+String uri = 'http://192.168.1.22:4000';
+//office wife port = 10.75.21.15;
 // String uri = 'http://localhost:4000';
 class GlobalVariables {
   // COLOR
@@ -17,4 +18,5 @@ class GlobalVariables {
   static var selectedNavBarColor = Colors.cyan[800]!;
   static const unselectedNavBarColor = Colors.black87;
   static const blackColor = Colors.black;
+  static const blueColor = Colors.blueAccent;
 }
