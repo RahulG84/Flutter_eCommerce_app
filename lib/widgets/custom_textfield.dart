@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   Widget? prefixIcon;
   Widget? suffixIcon;
   bool secureText;
+  Key? textFormFieldKey;
   CustomTextField({
     Key? key,
     required this.controller,
@@ -14,13 +15,16 @@ class CustomTextField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     required this.secureText,
+    this.textFormFieldKey,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Key textFormFieldKey = GlobalKey<FormState>();
     return TextFormField(
       controller: controller,
       obscureText: secureText,
+      key: textFormFieldKey,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon,
