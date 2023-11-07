@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-String uri = 'http://192.168.1.22:4000';
-//office wife port = 10.75.21.15;
+String uri = 'http://10.75.22.199:4000';
 // String uri = 'http://localhost:4000';
 class GlobalVariables {
   // COLOR
