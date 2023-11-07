@@ -102,7 +102,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
                 child: badges.Badge(
                   badgeContent: const Text(
-                    '5',
+                    '0',
                     style: TextStyle(
                       fontSize: 18,
                     ),

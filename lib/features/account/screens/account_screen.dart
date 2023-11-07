@@ -44,16 +44,12 @@ class _AccountScreenState extends State<AccountScreen> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(right: 15),
-                        child: GestureDetector(
-                            onTap: () {
-                              print('object');
-                            },
+                        child: InkWell(
+                            onTap: () {},
                             child: const Icon(Icons.notifications_outlined)),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          print('object');
-                        },
+                      InkWell(
+                        onTap: () {},
                         child: const Icon(
                           Icons.search,
                         ),
