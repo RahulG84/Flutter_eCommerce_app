@@ -13,10 +13,13 @@ class CustomButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 50),
       ),
-      child: Text(buttonTile, style: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),),
+      child: Text(
+        buttonTile,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

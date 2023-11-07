@@ -1,4 +1,5 @@
 import 'package:amazon_clone/constants/global_variables.dart';
+import 'package:amazon_clone/features/account/screens/account_screen.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
@@ -24,7 +25,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> widgetArray = [
     const HomeScreen(),
-    const Center(child: Text('Account Page')),
+    const AccountScreen(),
     const Center(child: Text('Shipping Page')),
   ];
 
@@ -36,7 +37,7 @@ class _BottomBarState extends State<BottomBar> {
         selectedItemColor: GlobalVariables.selectedNavBarColor,
         unselectedItemColor: GlobalVariables.unselectedNavBarColor,
         backgroundColor: GlobalVariables.backgroundColor,
-        iconSize: 40,
+        iconSize: 30,
         onTap: updatePage,
         items: [
           //HOME
