@@ -8,14 +8,16 @@ class CustomTextField extends StatelessWidget {
   Widget? suffixIcon;
   bool secureText;
   Key? textFormFieldKey;
+  int maxLine;
   CustomTextField({
     Key? key,
     required this.controller,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
-    required this.secureText,
+    this.secureText = false,
     this.textFormFieldKey,
+    this.maxLine = 1,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: secureText,
+      maxLines: maxLine,
       key: textFormFieldKey,
       decoration: InputDecoration(
         hintText: hintText,
@@ -36,7 +39,7 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color: GlobalVariables.secondaryColor,
+            color: GlobalVariables.blackColor,
           ),
         ),
       ),
