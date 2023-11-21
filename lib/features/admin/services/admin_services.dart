@@ -51,19 +51,19 @@ class AdminServices {
         body: product.toJson(),
       );
 
-      if (res.statusCode == 200) {
-        // Check if response body is not null before accessing it
-        if (res.body != null) {
-          print('Response: ${res.body}');
-          // Process the response body here
-        } else {
-          print('Response body is null.');
-          // Handle null response case here
-        }
-      } else {
-        print('Request failed with status: ${res.statusCode}');
-        // Handle error scenarios or failed requests
-      }
+      // if (res.statusCode == 200) {
+      //   // Check if response body is not null before accessing it
+      //   if (res.body != null) {
+      //     print('Response: ${res.body}');
+      //     // Process the response body here
+      //   } else {
+      //     print('Response body is null.');
+      //     // Handle null response case here
+      //   }
+      // } else {
+      //   print('Request failed with status: ${res.statusCode}');
+      //   // Handle error scenarios or failed requests
+      // }
 
       httpErrorHandle(
         response: res,
