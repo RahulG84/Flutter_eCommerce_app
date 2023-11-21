@@ -18,7 +18,6 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
     });
     products = await products.save();
     res.json(products);
-    x;
   } catch (e) {
     return res.status(500).json({ error: e.error });
   }
@@ -45,7 +44,7 @@ adminRouter.post("/admin/delete-product", async (req, res) => {
     // particular id document is deleted and remaining all the doc saved in the product variable
     // product = await product.save();
     // This will save the all update list of  the product doc expecting deleted id
-    res.json(product);
+    res.json('product');
     // This will return the product doc in the response
   } catch (error) {
     res.status(500).json({ error: "error.message" });
