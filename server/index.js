@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 //Imp from project file
 const authRouter = require("./routes/auth");
+const adminRouter = require("./routes/admin");
 
 //Init
 const PORT = 4000;
@@ -14,6 +15,7 @@ const dbUrl =
 //middleware
 app.use(express.json()); // it only pass the incoming request with the json payload
 app.use(authRouter);
+app.use(adminRouter);
 
 mongoose
   .connect(dbUrl)

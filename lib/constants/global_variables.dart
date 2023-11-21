@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://10.75.22.199:4000';
+String uri = 'http://10.75.23.76:4000';
 
 // String uri = 'http://localhost:4000';
 class GlobalVariables {

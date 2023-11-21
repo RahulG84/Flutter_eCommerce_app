@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:amazon_clone/features/admin/services/admin_services.dart';
 import 'package:amazon_clone/utils/utils.dart';
 import 'package:amazon_clone/widgets/custom_button.dart';
 import 'package:amazon_clone/widgets/custom_textfield.dart';
@@ -23,6 +24,10 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
 
+  final _addProductFormKey = GlobalKey<FormState>();
+
+  AdminServices adminServices = AdminServices();
+
   String category = 'Mobiles';
 
   static const List<String> productCategoriesList = [
@@ -40,6 +45,20 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
       images = res;
     });
     print('images.length ${images.length}');
+  }
+
+  void sellProducts() {
+    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProducts(
+        context: context,
+        name: productNameController.text,
+        description: descriptionController.text,
+        price: double.parse(priceController.text),
+        quantity: double.parse(quantityController.text),
+        category: category,
+        images: images,
+      );
+    }
   }
 
   @override
@@ -79,6 +98,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Form(
+          key: _addProductFormKey,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -193,7 +213,7 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomButton(onPressed: () {}, buttonTile: 'Sell'),
+                CustomButton(onPressed: sellProducts, buttonTile: 'Sell'),
               ],
             ),
           ),
