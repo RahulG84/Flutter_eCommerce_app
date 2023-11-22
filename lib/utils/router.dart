@@ -2,6 +2,7 @@ import 'package:amazon_clone/features/admin/screens/add_products_screen.dart';
 import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
 import 'package:amazon_clone/features/home/screens/category_deals_screen.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
+import 'package:amazon_clone/features/search/screens/search_screen.dart';
 import 'package:amazon_clone/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,11 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
       var category = routeSettings.arguments as String;
       return MaterialPageRoute(
         builder: (context) => CategoryDealsScreen(categories: category),
+      );
+    case SearchScreen.routeName:
+      var searchQuery = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        builder: (context) => SearchScreen(searchQuery: searchQuery),
       );
     default:
       return MaterialPageRoute(
