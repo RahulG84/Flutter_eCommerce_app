@@ -1,26 +1,39 @@
-import 'package:amazon_clone/constants/global_variables.dart';
-import 'package:amazon_clone/features/home/widgets/carousel_image.dart';
-import 'package:amazon_clone/features/home/widgets/deal_of_day.dart';
-import 'package:amazon_clone/features/home/widgets/top_categories.dart';
-import 'package:amazon_clone/features/home/widgets/viewed_items.dart';
-import 'package:amazon_clone/features/search/screens/search_screen.dart';
+import 'package:amazon_clone/constants/loader.dart';
+import 'package:amazon_clone/features/search/services/search_services.dart';
+import 'package:amazon_clone/features/search/widgets/search_product.dart';
 import 'package:flutter/material.dart';
-import '../widgets/address_box.dart';
+import 'package:amazon_clone/models/products_models.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home_screen';
-  const HomeScreen({Key? key}) : super(key: key);
+import '../../../constants/global_variables.dart';
+import '../../home/widgets/address_box.dart';
+
+class SearchScreen extends StatefulWidget {
+  static const String routeName = '/search_screen';
+  final String searchQuery;
+  const SearchScreen({Key? key, required this.searchQuery}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController? searchTextController = TextEditingController();
+class _SearchScreenState extends State<SearchScreen> {
+  List<Product>? product;
+  SearchServices searchServices = SearchServices();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchSearchedProducts();
+  }
+
+  fetchSearchedProducts() async {
+    product = await searchServices.searchProducts(
+        context: context, searchQuery: widget.searchQuery);
+    setState(() {});
+  }
 
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
-    searchTextController!.text = '';
   }
 
   @override
@@ -47,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     elevation: 1,
                     child: TextFormField(
                       onFieldSubmitted: navigateToSearchScreen,
-                      controller: searchTextController,
                       decoration: InputDecoration(
                         hintText: 'Search Amazon.in',
                         hintStyle: const TextStyle(
@@ -124,29 +136,24 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            AddressBox(),
-            SizedBox(
-              height: 20,
+      body: product == null
+          ? const Loader()
+          : Column(
+              children: [
+                const AddressBox(),
+                const SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: product!.length,
+                    itemBuilder: (context, index) {
+                      return SearchProducts(product: product![index]);
+                    },
+                  ),
+                )
+              ],
             ),
-            TopCategories(),
-            SizedBox(
-              height: 10,
-            ),
-            CarouselImage(),
-            SizedBox(
-              height: 10,
-            ),
-            ViewedItems(),
-            SizedBox(
-              height: 10,
-            ),
-            DealOfTheDay(),
-          ],
-        ),
-      ),
     );
   }
 }
