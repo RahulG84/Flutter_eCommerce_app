@@ -6,6 +6,7 @@ import 'package:amazon_clone/models/products_models.dart';
 
 import '../../../constants/global_variables.dart';
 import '../../home/widgets/address_box.dart';
+import '../../product_details/screen/product_details_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search_screen';
@@ -19,6 +20,11 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Product>? product;
   SearchServices searchServices = SearchServices();
+
+  navigateToProductDetailsScreen(Product product) {
+    Navigator.pushNamed(context, ProductDetails.routeName, arguments: product);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -148,7 +154,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListView.builder(
                     itemCount: product!.length,
                     itemBuilder: (context, index) {
-                      return SearchProducts(product: product![index]);
+                      return SearchProducts(
+                        product: product![index],
+                        onDetailClick: () {
+                          navigateToProductDetailsScreen(product![index]);
+                        },
+                      );
                     },
                   ),
                 )
