@@ -21,6 +21,7 @@ class GlobalVariables {
   static const blackColor = Colors.black;
   static const blueColor = Colors.blueAccent;
   static const whiteColor = Colors.white;
+  static const redColor = Colors.red;
 
   static const List<String> carouselImages = [
     'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',

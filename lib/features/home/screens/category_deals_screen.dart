@@ -1,5 +1,6 @@
 import 'package:amazon_clone/constants/loader.dart';
 import 'package:amazon_clone/features/home/services/home_services.dart';
+import 'package:amazon_clone/features/product_details/screen/product_details_screen.dart';
 import 'package:amazon_clone/models/products_models.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,10 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
     setState(() {
       //print(productList!.map((e) => e.price));
     });
+  }
+
+  navigateToProductDetailsScreen(Product product) {
+    Navigator.pushNamed(context, ProductDetails.routeName, arguments: product);
   }
 
   @override
@@ -88,7 +93,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                       return product.images.isEmpty
                           ? const Text('No Data Added')
                           : GestureDetector(
-                              onTap: () {},
+                              onTap: () => navigateToProductDetailsScreen(product),
                               child: Column(
                                 children: [
                                   SizedBox(
