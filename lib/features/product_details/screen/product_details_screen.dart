@@ -133,11 +133,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                   Text(
                     widget.product!.id as String,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: GlobalVariables.blackColor,
                     ),
                   ),
-                  Stars(rating: 5),
+                  Stars(
+                    rating: 5,
+                    iconSize: 30,
+                    initialRating: 3.45,
+                    onTap: () {},
+                  ),
                 ],
               ),
               const SizedBox(
@@ -264,6 +269,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 rating: 5,
                 initialRating: 4.5,
                 iconSize: 45,
+                onTap: () {},
               ),
               const SizedBox(
                 height: 5,

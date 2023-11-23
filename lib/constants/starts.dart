@@ -6,37 +6,44 @@ class Stars extends StatelessWidget {
   int rating;
   double initialRating;
   double iconSize;
+  void Function()? onTap;
+
   Stars({
     Key? key,
     required this.rating,
     this.initialRating = 2.67,
-    this.iconSize = 30,
+    this.iconSize = 0.88,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
       rating: initialRating,
-      itemBuilder: (context, index) => const Icon(
-        Icons.star,
-        color: GlobalVariables.secondaryColor,
+      itemBuilder: (context, index) => InkWell(
+        onTap: onTap,
+        child: const Icon(
+          Icons.star,
+          color: GlobalVariables.secondaryColor,
+        ),
       ),
       itemCount: rating,
       itemSize: iconSize,
       direction: Axis.horizontal,
     );
-
-    //   RatingBar.builder(
-    //   initialRating: 3,
-    //   minRating: 1,
-    //   direction: Axis.horizontal,
-    //   itemCount: rating,
-    //   itemBuilder: (context, _) => const Icon(
-    //     Icons.star,
-    //     color: GlobalVariables.secondaryColor,
-    //     size: 2,
-    //   ),
-    //   onRatingUpdate: (double value) {},
-    // );
   }
 }
+
+//     RatingBar.builder(
+//     initialRating: initialRating,
+//     minRating: 1,
+//     direction: Axis.horizontal,
+//     itemCount: rating,
+//     itemBuilder: (context, _) => Icon(
+//       Icons.star,
+//       color: GlobalVariables.secondaryColor,
+//       size: iconSize,
+//     ),
+//     onRatingUpdate: (double value) {},
+//   );
+// }
