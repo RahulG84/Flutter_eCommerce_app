@@ -1,6 +1,10 @@
+import 'package:amazon_clone/features/home/screens/Total_deal_of_day.dart';
+import 'package:amazon_clone/features/home/services/home_services.dart';
+import 'package:amazon_clone/features/product_details/screen/product_details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/global_variables.dart';
+import '../../../models/products_models.dart';
 
 class DealOfTheDay extends StatefulWidget {
   const DealOfTheDay({Key? key}) : super(key: key);
@@ -10,6 +14,32 @@ class DealOfTheDay extends StatefulWidget {
 }
 
 class _DealOfTheDayState extends State<DealOfTheDay> {
+  List<Product>? productList;
+  HomeServices homeServices = HomeServices();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchALlMobileCategoryProduct();
+  }
+
+  fetchALlMobileCategoryProduct() async {
+    productList = await homeServices.fetchCategoryProducts(
+      context: context,
+      category: 'Essentials',
+    );
+    setState(() {});
+  }
+
+  navigateToProductDetailScreen(Product product) {
+    Navigator.pushNamed(context, ProductDetails.routeName, arguments: product);
+  }
+
+  navigateToTotalDealOfTheDay() {
+    Navigator.pushNamed(context, TotalDealOfTheDay.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +58,9 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  navigateToTotalDealOfTheDay();
+                },
                 icon: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 16,
@@ -43,58 +75,61 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
               color: GlobalVariables.whiteColor,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: GlobalVariables.dealList.length,
+                itemCount: productList!.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(10),
-                    // height: double.infinity,
-
-                    decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          // color: Color(0xff000000),
-                          color: Colors.white60,
-                          spreadRadius: 1,
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 300,
-                          width: 250,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image(
-                              fit: BoxFit.cover,
-                              // color: Colors.black,
-                              image: NetworkImage(
-                                GlobalVariables.dealList[index]['image']!,
+                  final dealProduct = productList![index];
+                  return GestureDetector(
+                    onTap: () {
+                      navigateToProductDetailScreen(dealProduct);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white60,
+                            spreadRadius: 1,
+                            blurRadius: 6,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 300,
+                            width: 250,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image(
+                                fit: BoxFit.cover,
+                                // color: Colors.black,
+                                image: NetworkImage(
+                                  dealProduct!.images[0],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Text(
-                          GlobalVariables.dealList[index]['name']!,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                          Text(
+                            dealProduct!.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        Text(
-                          GlobalVariables.dealList[index]['rate']!,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                          Text(
+                            '\$${dealProduct!.price.toString()}',
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },

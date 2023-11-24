@@ -1,8 +1,11 @@
 import 'package:amazon_clone/constants/starts.dart';
+import 'package:amazon_clone/features/product_details/services/product_details_services.dart';
 import 'package:amazon_clone/models/products_models.dart';
+import 'package:amazon_clone/provider/user_provider.dart';
 import 'package:amazon_clone/widgets/custom_button.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../constants/global_variables.dart';
 import '../../search/screens/search_screen.dart';
@@ -17,8 +20,14 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  ProductDetailsServices productDetailsServices = ProductDetailsServices();
+
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
+
+  addToCart() {
+    productDetailsServices.addToCart(context: context, product: widget.product);
   }
 
   @override
@@ -241,7 +250,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 height: 10,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: addToCart,
                 buttonTile: 'Add to cart',
                 backgroundColor: Colors.yellowAccent,
                 buttonTitleColor: GlobalVariables.blackColor,

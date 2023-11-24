@@ -3,6 +3,8 @@ import 'package:amazon_clone/features/account/screens/account_screen.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:provider/provider.dart';
+import '../provider/user_provider.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/initial-home-page';
@@ -31,6 +33,7 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final cartLength = Provider.of<UserProvider>(context).user.cart.length;
     return Scaffold(
       body: widgetArray[_page],
       bottomNavigationBar: BottomNavigationBar(
@@ -101,9 +104,9 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
                 child: badges.Badge(
-                  badgeContent: const Text(
-                    '0',
-                    style: TextStyle(
+                  badgeContent: Text(
+                    cartLength.toString(),
+                    style: const TextStyle(
                       fontSize: 18,
                     ),
                   ),

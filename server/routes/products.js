@@ -1,7 +1,7 @@
 const express = require("express");
 
 const auth = require("../middleware/auth");
-const Product = require("../model/products_model");
+const { Product } = require("../model/products_model");
 const productRouter = express.Router();
 
 // /api/products?category=Mobile
