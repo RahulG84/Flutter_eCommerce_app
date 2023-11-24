@@ -1,6 +1,6 @@
 const express = require("express");
 const admin = require("../middleware/admin");
-const Product = require("../model/products_model");
+const { Product } = require("../model/products_model");
 
 const adminRouter = express.Router();
 
@@ -44,7 +44,7 @@ adminRouter.post("/admin/delete-product", async (req, res) => {
     // particular id document is deleted and remaining all the doc saved in the product variable
     // product = await product.save();
     // This will save the all update list of  the product doc expecting deleted id
-    res.json('product');
+    res.json("product");
     // This will return the product doc in the response
   } catch (error) {
     res.status(500).json({ error: "error.message" });

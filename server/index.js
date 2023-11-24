@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/products");
+const userRouter = require("./routes/user");
 
 //Init
 const PORT = 4000;
@@ -18,6 +19,7 @@ app.use(express.json()); // it only pass the incoming request with the json payl
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 mongoose
   .connect(dbUrl)

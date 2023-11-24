@@ -1,5 +1,6 @@
 import 'package:amazon_clone/features/admin/screens/add_products_screen.dart';
 import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone/features/home/screens/Total_deal_of_day.dart';
 import 'package:amazon_clone/features/home/screens/category_deals_screen.dart';
 import 'package:amazon_clone/features/home/screens/home_screen.dart';
 import 'package:amazon_clone/features/product_details/screen/product_details_screen.dart';
@@ -40,6 +41,10 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
       var product = routeSettings.arguments as Product;
       return MaterialPageRoute(
         builder: (context) => ProductDetails(product: product),
+      );
+    case TotalDealOfTheDay.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const TotalDealOfTheDay(),
       );
     default:
       return MaterialPageRoute(
