@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://10.75.23.76:4000';
+String uri = 'http://10.75.22.236:4000';
+//10.75.22.236
 
 // String uri = 'http://localhost:4000';
 class GlobalVariables {
@@ -22,6 +23,8 @@ class GlobalVariables {
   static const blueColor = Colors.blueAccent;
   static const whiteColor = Colors.white;
   static const redColor = Colors.red;
+  static const tealColor = Colors.teal;
+  static const yellowColor = Colors.yellow;
 
   static const List<String> carouselImages = [
     'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',
@@ -77,37 +80,37 @@ class GlobalVariables {
     {
       'name': 'Nike',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9D9BF3fLStmwf-TRvBKm3TxcQETcu6O3jpg&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9D9BF3fLStmwf-TRvBKm3TxcQETcu6O3jpg&usqp=CAU',
       'rate': 'INR : 500.00'
     },
     {
       'name': 'Men-jacket',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGBL5vKGaS6DrLGNyvEr3mDMQrBu2us2z7_g&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGBL5vKGaS6DrLGNyvEr3mDMQrBu2us2z7_g&usqp=CAU',
       'rate': 'INR : 1200.00'
     },
     {
       'name': 'Puma T-shirt',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5sR7D2kTep2vKlKfQ6QlKvdX4_WfQ66WFug&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5sR7D2kTep2vKlKfQ6QlKvdX4_WfQ66WFug&usqp=CAU',
       'rate': 'INR : 1000.00'
     },
     {
       'name': 'Nike',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9D9BF3fLStmwf-TRvBKm3TxcQETcu6O3jpg&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9D9BF3fLStmwf-TRvBKm3TxcQETcu6O3jpg&usqp=CAU',
       'rate': 'INR : 500.00'
     },
     {
       'name': 'Men-jacket',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGBL5vKGaS6DrLGNyvEr3mDMQrBu2us2z7_g&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGBL5vKGaS6DrLGNyvEr3mDMQrBu2us2z7_g&usqp=CAU',
       'rate': 'INR : 1200.00'
     },
     {
       'name': 'Puma T-shirt',
       'image':
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5sR7D2kTep2vKlKfQ6QlKvdX4_WfQ66WFug&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5sR7D2kTep2vKlKfQ6QlKvdX4_WfQ66WFug&usqp=CAU',
       'rate': 'INR : 1000.00'
     },
   ];
