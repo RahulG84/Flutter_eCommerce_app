@@ -1,3 +1,4 @@
+import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/constants/starts.dart';
 import 'package:amazon_clone/models/products_models.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class _SearchProductsState extends State<SearchProducts> {
                       child: const Text(
                         'In Stock',
                         style: TextStyle(
-                          color: Colors.teal,
+                          color: GlobalVariables.tealColor,
                         ),
                         maxLines: 2,
                       ),

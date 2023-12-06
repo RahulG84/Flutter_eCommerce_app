@@ -37,6 +37,50 @@ userRouter.post("/api/add-to-cart", auth, async (req, res) => {
   }
 });
 
+//delete the carted product
+
+userRouter.delete("/api/remove-from-cart/:id", auth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    let user = await User.findById(req.user);
+
+    for (let i = 0; i < user.cart.length; i++) {
+      if (user.cart[i].product._id.equals(product._id)) {
+        if (user.cart[i].quantity == 1) {
+          user.cart.splice(i, 1);
+        } else {
+          user.cart[i].quantity -= 1;
+        }
+      }
+    }
+
+    user = await user.save();
+    res.json(user);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// try {
+//   const productData = await Product.find({});
+//   res.json(productData);
+//   console.log(productData);
+// } catch (error) {
+//   res.status(500).json({ error: error.message });
+// }
+
+// authRouter.get("/", auth, async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user);
+//     res.json({ ...user._doc, token: req.token });
+//   } catch (error) {
+//     return res
+//       .status(500)
+//       .json({ error: `get user token error ${error.message}` });
+//   }
+// });
+
 module.exports = userRouter;
 
 //  try {
