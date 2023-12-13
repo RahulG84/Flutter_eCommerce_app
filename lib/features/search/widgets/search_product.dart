@@ -35,56 +35,58 @@ class _SearchProductsState extends State<SearchProducts> {
                   height: 135,
                   width: 135,
                 ),
-                Column(
-                  children: [
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        widget.product.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          widget.product.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 5, top: 5),
-                      child: Stars(
-                        rating: 5,
-                      ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: Text(
-                        '\$${widget.product.price}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 5, top: 5),
+                        child: Stars(
+                          rating: 5,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text('Eligible for FREE Shipping'),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text(
-                        'In Stock',
-                        style: TextStyle(
-                          color: GlobalVariables.tealColor,
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Text(
+                          'INR ${widget.product.price}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                  ],
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: const Text('Eligible for FREE Shipping'),
+                      ),
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: const Text(
+                          'In Stock',
+                          style: TextStyle(
+                            color: GlobalVariables.tealColor,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

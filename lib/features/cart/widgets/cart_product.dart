@@ -1,4 +1,5 @@
 import 'package:amazon_clone/features/cart/services/cart_services.dart';
+import 'package:amazon_clone/features/product_details/screen/product_details_screen.dart';
 import 'package:amazon_clone/features/product_details/services/product_details_services.dart';
 import 'package:amazon_clone/models/products_models.dart';
 import 'package:amazon_clone/models/user_models.dart';
@@ -40,10 +41,15 @@ class _CartProductState extends State<CartProduct> {
       );
     }
 
+    void navigateToDetailScreen(Product product) {
+      Navigator.pushNamed(context, ProductDetails.routeName,
+          arguments: product);
+    }
+
     return Column(
       children: [
-        GestureDetector(
-          onTap: () {},
+        InkWell(
+          onTap: () => navigateToDetailScreen(product),
           child: Container(
             margin: const EdgeInsets.only(
               left: 10,
@@ -58,49 +64,51 @@ class _CartProductState extends State<CartProduct> {
                   height: 135,
                   width: 135,
                 ),
-                Column(
-                  children: [
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        product.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          product.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: Text(
-                        '\$${product.price}',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Text(
+                          '\$${product.price}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text('Eligible for FREE Shipping'),
-                    ),
-                    Container(
-                      width: 235,
-                      padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: const Text(
-                        'In Stock',
-                        style: TextStyle(
-                          color: GlobalVariables.tealColor,
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: const Text('Eligible for FREE Shipping'),
+                      ),
+                      Container(
+                        width: 235,
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: const Text(
+                          'In Stock',
+                          style: TextStyle(
+                            color: GlobalVariables.tealColor,
+                          ),
+                          maxLines: 2,
                         ),
-                        maxLines: 2,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

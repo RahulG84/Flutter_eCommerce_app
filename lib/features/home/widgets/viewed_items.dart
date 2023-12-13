@@ -20,18 +20,23 @@ class _ViewedItemsState extends State<ViewedItems> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 20),
+      margin: const EdgeInsets.only(left: 10),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Related to items you\'ve viewed',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: GlobalVariables.blackColor,
-                  fontWeight: FontWeight.bold,
+              const Expanded(
+                child: Text(
+                  'Related to items you\'ve viewed',
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: GlobalVariables.blackColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               IconButton(
@@ -67,7 +72,8 @@ class _ViewedItemsState extends State<ViewedItems> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitHeight,
+                        // width: 150,
                         image: NetworkImage(
                           viewedItems[index],
                         ),

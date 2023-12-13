@@ -51,6 +51,8 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
             children: [
               const Text(
                 'Deal Of The Day..',
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 20,
                   color: GlobalVariables.blackColor,
@@ -75,12 +77,14 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
               color: GlobalVariables.whiteColor,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: productList!.length,
+                itemCount:  productList?.length ?? 0,
+                //itemCount: productList!.isEmpty ? 0 : productList?.length,
+                //itemCount: productList?.length,
                 itemBuilder: (context, index) {
-                  final dealProduct = productList![index];
+                  final dealProduct = productList?[index];
                   return GestureDetector(
                     onTap: () {
-                      navigateToProductDetailScreen(dealProduct);
+                      navigateToProductDetailScreen(dealProduct!);
                     },
                     child: Container(
                       margin: const EdgeInsets.all(10),
@@ -94,15 +98,13 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                         ],
                       ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            height: 300,
-                            width: 250,
+                          Expanded(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image(
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fitHeight,
                                 // color: Colors.black,
                                 image: NetworkImage(
                                   dealProduct!.images[0],
@@ -111,7 +113,7 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                             ),
                           ),
                           Text(
-                            dealProduct!.name,
+                            dealProduct.name,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontSize: 20,
@@ -120,7 +122,7 @@ class _DealOfTheDayState extends State<DealOfTheDay> {
                             ),
                           ),
                           Text(
-                            '\$${dealProduct!.price.toString()}',
+                            'INR ${dealProduct.price.toString()}',
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontSize: 20,

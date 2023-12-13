@@ -49,56 +49,63 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return products == null
         ? const Loader()
         : Scaffold(
-            body: GridView.builder(
-              itemCount: products!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                final productData = products![index];
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 140,
-                      child: SingleProduct(image: productData.images[0]),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            productData.name,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 4,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: GlobalVariables.blackColor,
+            body: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.builder(
+                itemCount: products!.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  final productData = products![index];
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 140,
+                        child: SingleProduct(image: productData.images[0]),
+                      ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                productData.name,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: true,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: GlobalVariables.blackColor,
+                                ),
+                              ),
                             ),
+                            IconButton(
+                              onPressed: () {
+                                deleteProducts(productData, index);
+                              },
+                              icon: const Icon(Icons.delete_outlined),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            textAlign: TextAlign.start,
+                            'INR ${productData.price.toString()}',
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                            maxLines: 1,
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            deleteProducts(productData, index);
-                          },
-                          icon: const Icon(Icons.delete_outlined),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          textAlign: TextAlign.start,
-                          'INR ${productData.price.toString()}',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                      ],
-                    ),
-                  ],
-                );
-              },
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: navigateToAddProductScreen,

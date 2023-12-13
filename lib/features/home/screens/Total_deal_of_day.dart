@@ -29,7 +29,7 @@ class _TotalDealOfTheDayState extends State<TotalDealOfTheDay> {
   void fetchAllDealOfTheDay() async {
     productList = await homeServices.fetchCategoryProducts(
       context: context,
-      category: 'Essentials',
+      category: 'Mobiles',
     );
     setState(() {});
   }
@@ -146,7 +146,7 @@ class _TotalDealOfTheDayState extends State<TotalDealOfTheDay> {
         color: GlobalVariables.whiteColor,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: productList!.length,
+          itemCount:  productList?.length ?? 0,
           itemBuilder: (context, index) {
             final dealProduct = productList![index];
             return GestureDetector(
@@ -168,7 +168,7 @@ class _TotalDealOfTheDayState extends State<TotalDealOfTheDay> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 300,
                         width: 250,
                         child: ClipRRect(
@@ -192,7 +192,7 @@ class _TotalDealOfTheDayState extends State<TotalDealOfTheDay> {
                         ),
                       ),
                       Text(
-                        '\$${dealProduct!.price.toString()}',
+                        'INR ${dealProduct!.price.toString()}',
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 20,
