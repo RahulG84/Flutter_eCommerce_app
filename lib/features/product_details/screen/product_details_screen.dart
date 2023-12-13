@@ -210,7 +210,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                   ),
                   Text(
-                    '\$${widget.product!.price}',
+                    'INR ${widget.product!.price}',
                     style: const TextStyle(
                       fontSize: 24,
                       color: GlobalVariables.redColor,

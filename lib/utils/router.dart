@@ -1,3 +1,4 @@
+import 'package:amazon_clone/features/address/screens/address_screen.dart';
 import 'package:amazon_clone/features/admin/screens/add_products_screen.dart';
 import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
 import 'package:amazon_clone/features/home/screens/Total_deal_of_day.dart';
@@ -45,6 +46,11 @@ Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     case TotalDealOfTheDay.routeName:
       return MaterialPageRoute(
         builder: (context) => const TotalDealOfTheDay(),
+      );
+    case AddressScreen.routeName:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        builder: (context) => AddressScreen(totalAmount: totalAmount),
       );
     default:
       return MaterialPageRoute(

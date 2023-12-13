@@ -27,7 +27,7 @@ class SingleProduct extends StatelessWidget {
             width: 180,
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(image),
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.contain,
             fadeInDuration: const Duration(seconds: 3),
             fadeInCurve: Curves.easeInOut,
           ),
